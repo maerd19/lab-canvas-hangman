@@ -1,11 +1,11 @@
 var hangman;
 
-function Hangman(words, secretWord, letters, guessedLetter, errorsLeft) {
-  this.words = ['Patt'];
+function Hangman() {
+  this.words = ['Patt', 'Ivan'];
   this.secretWord = '';
-  this.letters = letters;
-  this.guessedLetter = guessedLetter;
-  this.errorsLeft = errorsLeft;
+  this.letters = [];
+  this.guessedLetter = '';
+  this.errorsLeft = 10;
 }
 
 Hangman.prototype.getWord = function () {
@@ -13,20 +13,18 @@ Hangman.prototype.getWord = function () {
 };
 
 Hangman.prototype.checkIfLetter = function (e) {
-  // let validation = false;
-  if (e.keyCode <= 65 && e.keyCode >= 90) {
-    return true;
-   } else {
-     return false;
-   }
-  // // if (event.keyCode >= 97 && event.keyCode <= 122) {
-  // //   validation = true;
-  // // }
-  // return validation;
+  let letter = false;
+  if (e.keyCode >= 65 && e.keyCode <= 90) letter = true;
+  return letter;
 };
 
 Hangman.prototype.checkClickedLetters = function (key) {
-
+  let notExists = false;
+  if (!this.letters.includes(key)){
+    this.letters.push(key);
+    notExists = true;
+  }
+  return notExists;
 };
 
 // Hangman.prototype.addCorrectLetter = function (i) {
@@ -37,13 +35,13 @@ Hangman.prototype.checkClickedLetters = function (key) {
 
 // };
 
-// Hangman.prototype.checkGameOver = function () {
+Hangman.prototype.checkGameOver = function () {
+  return (this.errorsLeft == 0) ? true : false;
+};
 
-// };
-
-// Hangman.prototype.checkWinner = function () {
-
-// };
+Hangman.prototype.checkWinner = function () {
+  return (this.guessedLetter == this.secretWord) ? true : false;
+};
 
 document.getElementById('start-game-button').onclick = function () {
   hangman = new Hangman();
@@ -51,5 +49,5 @@ document.getElementById('start-game-button').onclick = function () {
 
 
 document.onkeydown = function (e) {
-  
+
 };
