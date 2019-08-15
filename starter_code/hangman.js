@@ -1,20 +1,33 @@
 var hangman;
 
-// function Hangman() {
+function Hangman(words, secretWord, letters, guessedLetter, errorsLeft) {
+  this.words = ['Patt'];
+  this.secretWord = '';
+  this.letters = letters;
+  this.guessedLetter = guessedLetter;
+  this.errorsLeft = errorsLeft;
+}
 
-// }
+Hangman.prototype.getWord = function () {
+  return this.words[Math.floor(Math.random() * this.words.length)];
+};
 
-// Hangman.prototype.getWord = function () {
+Hangman.prototype.checkIfLetter = function (e) {
+  // let validation = false;
+  if (e.keyCode <= 65 && e.keyCode >= 90) {
+    return true;
+   } else {
+     return false;
+   }
+  // // if (event.keyCode >= 97 && event.keyCode <= 122) {
+  // //   validation = true;
+  // // }
+  // return validation;
+};
 
-// };
+Hangman.prototype.checkClickedLetters = function (key) {
 
-// Hangman.prototype.checkIfLetter = function (keyCode) {
-
-// };
-
-// Hangman.prototype.checkClickedLetters = function (key) {
-
-// };
+};
 
 // Hangman.prototype.addCorrectLetter = function (i) {
 
@@ -38,5 +51,5 @@ document.getElementById('start-game-button').onclick = function () {
 
 
 document.onkeydown = function (e) {
-
+  
 };
